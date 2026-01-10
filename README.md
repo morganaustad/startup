@@ -1,4 +1,4 @@
-# Your startup name here
+# Virtual Feature Suggestion Box
 
 [My Notes](notes.md)
 
