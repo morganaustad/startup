@@ -16,9 +16,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [x] Proper use of Markdown
 - [x] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] Description of key features
+- [x] Description of how you will use each technology
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
@@ -26,33 +26,39 @@ During the development of software or video games, user feedback is remarkably i
 
 ### Design
 
-![Design image](placeholder.png)
+![Design image](FeatureReacherMockup.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Having a login option will allow the person seeking suggestions to limit who can enter and suggest features. Once past the login stage, the individual may suggest a feature or vote on already suggested features. Features with the most votes will be at the top.
 
 ```mermaid
 sequenceDiagram
     actor You
+    actor Other
     actor Website
-    You->>Website: Replace this with your design
+    You->>Website: Vote +1
+    Website->>Other: Show Vote +1
 ```
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- List of suggested features by users
+- Ability to vote on liked features for host to see preferences
+- Login capabilities
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Will use two HTML pages for structure of content. One page for login and another for suggesting features and voting.
+- **CSS** - Styling the application with reasonable color tones and spacing.
+- **React** - Login, suggesting features and updating what is shown, voting for features and showing the changes.
+- **Service** - Backend service with endpoints for:
+    - retrieving suggested features
+    - submitting suggested feature
+    - retrieving vote counts
+    - Register, login, and logout users. Cannot suggest features without being registered.
+- **DB/Login** - Stores login information and data, users, votes, and suggestions.
+- **WebSocket** - As suggestions are submitted and votes are casted, that is broadcast to other users.
 
 ## 🚀 AWS deliverable
 
