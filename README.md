@@ -30,7 +30,7 @@ During the development of software or video games, user feedback is remarkably i
 
 Having a login option will allow the person seeking suggestions to limit who can enter and suggest features. Once past the login stage, the individual may suggest a feature or vote on already suggested features. Features with the most votes will be at the top.
 
-```mermaid
+```
 sequenceDiagram
     actor You
     actor Other
