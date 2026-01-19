@@ -30,20 +30,12 @@ During the development of software or video games, user feedback is remarkably i
 
 Having a login option will allow the person seeking suggestions to limit who can enter and suggest features. Once past the login stage, the individual may suggest a feature or vote on already suggested features. Features with the most votes will be at the top.
 
-```
-sequenceDiagram
-    actor You
-    actor Other
-    actor Website
-    You->>Website: Vote +1
-    Website->>Other: Show Vote +1
-```
-
 ### Key features
 
 - List of suggested features by users
 - Ability to vote on liked features for host to see preferences
 - Login capabilities
+- Display featured game through grabbing steam API
 
 ### Technologies
 
