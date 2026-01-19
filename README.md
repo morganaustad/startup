@@ -56,21 +56,21 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Server deployed and accessible with custom domain name** - [My server link](https://yourdomainnamehere.click).
+- [x] **Server deployed and accessible with custom domain name** - [My server link](https://lintloopinteractive.com/).
 
 ## 🚀 HTML deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I created three pages for the startup: index, features, and store. 
+- [x] **Proper HTML element usage** - Each elements were used appropriately.
+- [x] **Links** - All links on the startup connect to each other or where they need to go.
+- [x] **Text** - There is text where it is required.
+- [x] **3rd party API placeholder** - The store.html page has a placeholder of what will be contained from the 3rd party API.
+- [x] **Images** - No images required except for the placeholder image on store.html.
+- [x] **Login placeholder** - `index.html` contains a login placeholder using `<form>`.
+- [x] **DB data placeholder** - `features.html` contains the DB placeholder.
+- [x] **WebSocket placeholder** - `features.html` contains the WebSocket placeholder.
 
 ## 🚀 CSS deliverable
 
