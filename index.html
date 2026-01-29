@@ -9,30 +9,34 @@
     </head>
 
     <body>
-        <header>
-            <h1>Feature Reacher</h1>
+        <div class="container">
 
-            <nav>
-                <menu>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="features.html">Suggest Features</a></li>
-                    <li><a href="store.html">Game Store Page</a></li>
-                </menu>
-            </nav>
+        <header class="d-flex flex-wrapp align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <a href="index.html" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                <h1>FeatureReacher</h1>
+            </a>
+
+            <menu class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="index.html"  class="nav-link px-2 link-dark">Home</a></li>
+                <li><a href="features.html"  class="nav-link px-2 link-dark">Suggest Features</a></li>
+                <li><a href="store.html"  class="nav-link px-2 link-dark">Game Store Page</a></li>
+            </menu>
         </header>
 
+        </div>
+
         <main>
-            <h2>Welcome to Feature Reacher</h2>
+            <h2>Welcome to FeatureReacher</h2>
             <form method="get" action="features.html">
                 <div>
                     <span>Email:</span>
-                    <input type="text" placeholder="email..." />
+                    <input type="text" placeholder="email@example.com" />
                 </div>
                 <div>
                     <span>Password:</span>
-                    <input type="password" placeholder="password..." />
+                    <input type="password" placeholder="Password" />
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit" class="btn btn-primary">Login</button>
             </form>
         </main>
 
