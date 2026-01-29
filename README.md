@@ -76,12 +76,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **Visually appealing colors and layout. No overflowing elements.** - I did not complete this part of the deliverable.
-- [x] **Use of a CSS framework** - I did not complete this part of the deliverable.
-- [x] **All visual elements styled using CSS** - I did not complete this part of the deliverable.
-- [x] **Responsive to window resizing using flexbox and/or grid display** - I did not complete this part of the deliverable.
-- [x] **Use of an imported font** - I did not complete this part of the deliverable.
-- [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I did not complete this part of the deliverable.
+- [x] **Visually appealing colors and layout. No overflowing elements.** - Using bootsrap a simple light themed color scheme was applied and organized.
+- [x] **Use of a CSS framework** - Bootstrap was implemented.
+- [x] **All visual elements styled using CSS** - Completed on all portions of the website.
+- [x] **Responsive to window resizing using flexbox and/or grid display** - Deafault Bootstrap breakpoints implemented into production.
+- [x] **Use of an imported font** - Two imported fonts were used for the site. One for the "logo" and one for everything else.
+- [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - Deafault Bootstrap classes were used.
 
 ## 🚀 React part 1: Routing deliverable
 
