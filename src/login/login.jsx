@@ -3,7 +3,7 @@ import React from 'react';
 export function Login() {
     return (
         <main className="justify-content-center align-items-center">
-            <h2 className="text-center">Welcome to <span style="font-family: Atma;">FeatureReacher</span></h2>
+            <h2 className="text-center">Welcome to <span>FeatureReacher</span></h2>
             <form method="get" action="features.html" className="px-4 py-3 border">
                 <div className="mb-3">
                     <label className="form-label">Email:</label>
