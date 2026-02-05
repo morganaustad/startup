@@ -2,6 +2,11 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
+import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom';
+import { Login } from './login/login';
+import { Features } from './features/features';
+import { Store } from './store/store';
+
 export default function App() {
   return (
     <div>
@@ -22,20 +27,12 @@ export default function App() {
         </div>
         <div className="container">
 
-        <main className="justify-content-center align-items-center">
-            <h2 className="text-center">Welcome to <span>FeatureReacher</span></h2>
-            <form method="get" action="features.html" className="px-4 py-3 border">
-                <div className="mb-3">
-                    <label className="form-label">Email:</label>
-                    <input type="email" className="form-control" placeholder="email@example.com" />
-                </div>
-                <div className="mb-4">
-                    <label className="form-label">Password:</label>
-                    <input type="password" className="form-control" placeholder="Password" />
-                </div>
-                <button type="submit" className="btn btn-info">Login</button>
-            </form>
-        </main>
+        <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/store" element={<Store />} />
+            <Route path="*" element={<NotFound />} />
+        </Routes>
 
         </div>
         <div className="container">
@@ -46,5 +43,13 @@ export default function App() {
 
         </div>
     </div>
+  );
+}
+
+function NotFound() {
+  return (
+    <main className="container bg-secondary text-center">
+      <h1>404 Not Found</h1>
+    </main>
   );
 }
