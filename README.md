@@ -91,6 +91,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Components** - I did not complete this part of the deliverable.
 - [ ] **Router** - I did not complete this part of the deliverable.
 
+<!--
 ## 🚀 React part 2: Reactivity deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
@@ -125,3 +126,4 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
 - [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
 - [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+-->
