@@ -9,18 +9,20 @@ import { Store } from './store/store';
 
 export default function App() {
   return (
+    <BrowserRouter>
+    
     <div>
         <div className="container">
 
         <header className="d-flex flex-wrapp align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <a href="index.html" className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <NavLink to="index" className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
                 <h1>FeatureReacher</h1>
-            </a>
+            </NavLink>
 
             <menu className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li className="nav-item"><a href="index.html"  className="nav-link px-2 link-secondary">Home</a></li>
-                <li className="nav-item"><a href="features.html"  className="nav-link px-2 link-dark">Suggest Features</a></li>
-                <li className="nav-item"><a href="store.html"  className="nav-link px-2 link-dark">Game Store Page</a></li>
+                <li className="nav-item"><NavLink to="/"  className="nav-link px-2 link-secondary">Home</NavLink></li>
+                <li className="nav-item"><NavLink to="features"  className="nav-link px-2 link-dark">Suggest Features</NavLink></li>
+                <li className="nav-item"><NavLink to="store"  className="nav-link px-2 link-dark">Game Store Page</NavLink></li>
             </menu>
         </header>
 
@@ -38,11 +40,13 @@ export default function App() {
         <div className="container">
 
         <footer className="py-3 my-4 nav justify-content-center border-top pb-3">
-            <a href="https://github.com/morganaustad/startup.git" target="_blank" className="text-center text-muted text-decoration-none pt-3">Morgan Austad's Startup GitHub Repository</a>
+            <NavLink to="https://github.com/morganaustad/startup.git" target="_blank" className="text-center text-muted text-decoration-none pt-3">Morgan Austad's Startup GitHub Repository</NavLink>
         </footer>
 
         </div>
     </div>
+
+    </BrowserRouter>
   );
 }
 
