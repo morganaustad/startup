@@ -1,0 +1,17 @@
+@font-face {
+    font-family: Atma;
+    src: url(../public/fonts/Atma/Atma-Regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: Jura;
+    src: url(../public/fonts/Jura/Jura-Regular.ttf) format("truetype");
+}
+
+* {
+    font-family: Jura;
+}
+
+h1, span {
+    font-family: Atma;
+}
