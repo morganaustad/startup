@@ -3,10 +3,12 @@ import React from 'react';
 
 export function Login({ setUser }) {
     const [text, setText] = React.useState('');
+    const navigate = useNavigate();
 
     function loginUser() {
         localStorage.setItem('user', text);
         setUser(text);
+        navigate('/features');
     }
 
     function textChange(e) {
