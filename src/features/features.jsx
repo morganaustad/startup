@@ -1,8 +1,12 @@
 import React from 'react';
 
-export function Features() {
+export function Features({user}) {
     return (
         <main>
+            <h2 className="text-center">Feature Suggestions for {user}</h2>
+
+            <br />
+            
             <div className="alert alert-primary px-3 py-2">
                 <h3>Feature Suggestion Title</h3>
                 <p className="text-secondary">Author</p>

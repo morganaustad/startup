@@ -9,6 +9,7 @@ import { Store } from './store/store';
 
 export default function App() {
   const [user, setUser] = React.useState(localStorage.getItem('user') || null);
+  const [game, setGame] = React.useState(localStorage.getItem('game') || 'this game');
 
   return (
     <BrowserRouter>
@@ -34,7 +35,7 @@ export default function App() {
 
         <Routes>
             <Route path="/" element={<Login setUser={setUser} />} />
-            <Route path="/features" element={<Features />} />
+            <Route path="/features" element={<Features user={user} game={game} />} />
             <Route path="/store" element={<Store />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
