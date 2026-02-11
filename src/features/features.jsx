@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, NavLink, Routes, Route, useNavigate } from 'react-router-dom';
 
 export function Features({user, game}) {
     return (
