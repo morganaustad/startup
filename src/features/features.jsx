@@ -2,12 +2,32 @@ import React from 'react';
 import { BrowserRouter, NavLink, Routes, Route, useNavigate } from 'react-router-dom';
 
 export function Features({user, game}) {
+    const [msg, setMsg] = React.useState('...Listening');
+    const [msg2, setMsg2] = React.useState('...Listening');
+
+    React.useEffect(() => {
+        setInterval(() => {
+            const names = ['Morgan', 'Lee', 'Jay', 'TesterPoo131'];
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            setMsg(`${randomName}'s feature suggestion:`);
+        }, 1500);
+    });
+
+    React.useEffect(() => {
+        setInterval(() => {
+            const names = ['Fred', 'Hank', 'Gary', 'Sally'];
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            setMsg2(`${randomName}'s feature suggestion:`);
+        }, 1500);
+    });
+
     return (
         <main>
             <h2 className="text-center">Feature Suggestions for {game ? game : "This Game"}</h2>
 
             <br />
 
+            <div>{msg}</div>
             <div className="alert alert-primary px-3 py-2">
                 <h3>Feature Suggestion Title</h3>
                 <p className="text-secondary">Author</p>
@@ -19,6 +39,7 @@ export function Features({user, game}) {
             
             <br />
 
+            <div>{msg2}</div>
             <div className="alert alert-primary px-3 py-2">
                 <h3>Feature Suggestion Title 2</h3>
                 <p className="text-secondary">Author</p>
