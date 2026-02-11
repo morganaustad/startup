@@ -9,7 +9,7 @@ import { Store } from './store/store';
 
 export default function App() {
   const [user, setUser] = React.useState(localStorage.getItem('user') || null);
-  const [game, setGame] = React.useState(localStorage.getItem('game') || 'this game');
+  const [game, setGame] = React.useState(localStorage.getItem('game') || null);
 
   return (
     <BrowserRouter>

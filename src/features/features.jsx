@@ -1,12 +1,12 @@
 import React from 'react';
 
-export function Features({user}) {
+export function Features({user, game}) {
     return (
         <main>
-            <h2 className="text-center">Feature Suggestions for {user}</h2>
+            <h2 className="text-center">Feature Suggestions for {game ? game : "This Game"}</h2>
 
             <br />
-            
+
             <div className="alert alert-primary px-3 py-2">
                 <h3>Feature Suggestion Title</h3>
                 <p className="text-secondary">Author</p>
@@ -29,7 +29,7 @@ export function Features({user}) {
             
             <br />
 
-            <form method="get" className="border px-3 py-3 ">
+            <form className="border px-3 py-3 ">
                 <div className="mb-3">
                     <label className="form-label">Title:</label>
                     <input type="text" placeholder="type here..." className="form-control" />
@@ -37,6 +37,10 @@ export function Features({user}) {
                 <div className="mb-3">
                     <label className="form-label">Description:</label>
                     <input type="text" placeholder="type here..." className="form-control py-5" />
+                </div> 
+                <div className="d-flex justify-content-between align-items-end">
+                    <button className="btn btn-info text-light">Submit Feature Suggestion</button>
+                    <p className='text-secondary'>{game ? game : ""} - {user}</p>
                 </div>
             </form>
         </main>
