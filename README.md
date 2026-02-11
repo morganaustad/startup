@@ -91,14 +91,14 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Components** - Each page has its own html components for insertion
 - [x] **Router** - My app.jsx uses all routing options for all links and components
 
-<!--
 ## 🚀 React part 2: Reactivity deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
+- [x] **Hooks** - I did not complete this part of the deliverable.
 
+<!--
 ## 🚀 Service deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
