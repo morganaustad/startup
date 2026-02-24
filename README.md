@@ -95,8 +95,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [x] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - I added a login option as well as added the ability to post feature suggestions on the features page. All this information has been stored in localStorage
+- [x] **Hooks** - I used hooks to accomplish each part of the deliverable.
 
 <!--
 ## 🚀 Service deliverable
