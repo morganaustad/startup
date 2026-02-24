@@ -26,7 +26,7 @@ export default function App() {
                 <li className="nav-item"><NavLink to="/"  className="nav-link px-2 link-secondary">Home</NavLink></li>
                 {user &&<li className="nav-item"><NavLink to="features"  className="nav-link px-2 link-dark">Suggest Features</NavLink></li>}
                 {user && <li className="nav-item"><NavLink to="store"  className="nav-link px-2 link-dark">Game Store Page</NavLink></li>}
-                {user && <li className="nav-item"><NavLink to="/"  className="nav-link px-2 py-2 link-light bg-info rounded" onClick={() => {localStorage.removeItem('user'); setUser(null);}}>Logout {user}</NavLink></li>}
+                {user && <li className="nav-item"><NavLink to="/"  className="nav-link px-2 py-2 link-light bg-info rounded" onClick={() => {localStorage.removeItem('user'); setUser(null); localStorage.removeItem('password');}}>Logout {user}</NavLink></li>}
             </menu>
         </header>
 
