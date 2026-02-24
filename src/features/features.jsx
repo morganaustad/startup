@@ -4,18 +4,15 @@ import { BrowserRouter, NavLink, Routes, Route, useNavigate } from 'react-router
 export function Features({user, game}) {
     const [title, setTitle] = React.useState('');
     const [description, setDescription] = React.useState('');
-    const [submittedPost, setSubmittedPost] = React.useState(null);
-    
-    
-    // const [msg, setMsg] = React.useState('...Listening');
+    const [posts, setPosts] = React.useState(() => {
+        const savedPosts = localStorage.getItem('posts');
+        return savedPosts ? JSON.parse(savedPosts) : [];
+    });
 
-    // React.useEffect(() => {
-    //     setInterval(() => {
-    //         const names = ['Morgan', 'Lee', 'Jay', 'TesterPoo131'];
-    //         const randomName = names[Math.floor(Math.random() * names.length)];
-    //         setMsg(`${randomName}'s feature suggestion:`);
-    //     }, 1500);
-    // });
+    React.useEffect(() => {
+        localStorage.setItem('posts', JSON.stringify(posts));
+    }, [posts]);
+
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -25,14 +22,32 @@ export function Features({user, game}) {
             return;
         }
 
-        setSubmittedPost({
+        setPosts(prevPosts => [
+            ...prevPosts,
+            {
             title,
-            description
-        });
+            description,
+            author: localStorage.getItem('user') || 'Anonymous'
+            }
+        ]);
+
 
         setTitle('');
         setDescription('');
     }
+
+
+    function handleErasePosts(e) {
+        e.preventDefault();
+
+        const confirmed = window.confirm('Are you sure you want to erase all your feature suggestions? This action cannot be undone.');
+
+        if (confirmed) {
+            setPosts([]);
+            localStorage.removeItem('posts');
+        }
+        
+        }
 
     return (
         <main>
@@ -40,33 +55,30 @@ export function Features({user, game}) {
 
             <br />
 
-            <div className="alert alert-primary px-3 py-2">
+            <div className="alert alert-primary px-3 py-2 mb-4">
                 <h3>Feature Suggestion Title</h3>
                 <p className="text-secondary">Author</p>
                 <p>Feature suggestion description - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut justo nisl. Sed aliquet tellus mi, sit amet aliquet diam suscipit tincidunt. Proin mollis feugiat libero ut dapibus. Aliquam erat volutpat. Maecenas a arcu vitae ipsum tristique condimentum quis id purus. Praesent lobortis odio in sem feugiat tempus sit amet id tortor. Praesent at dignissim justo, quis aliquet nulla. Etiam lobortis augue vitae sem gravida, vestibulum euismod eros suscipit. Vestibulum pretium odio quis erat convallis, in ullamcorper sapien mattis. Nunc efficitur ipsum nulla.</p>
 
                 <p>Integer est risus, iaculis id feugiat non, efficitur sit amet ipsum. Vestibulum sodales magna ipsum, nec sollicitudin elit mattis vel. Pellentesque hendrerit nec sem nec porta. Fusce pellentesque dui ex, ut faucibus orci sagittis congue. Nulla facilisi. Curabitur nisi nulla, pharetra non elit sit amet, molestie aliquam sem. Donec fermentum elementum enim. Suspendisse a molestie lorem, eu fermentum sapien. Pellentesque tincidunt est sapien, eget tristique felis condimentum et. Maecenas sit amet luctus ipsum. Vestibulum et tortor quis odio ultrices ornare vel vel libero. Phasellus iaculis lacus turpis, ut feugiat metus porta at.</p>
             </div>
-            
-            <br />
 
-            <div className="alert alert-primary px-3 py-2">
+            <div className="alert alert-primary px-3 py-2 mb-4">
                 <h3>Feature Suggestion Title 2</h3>
                 <p className="text-secondary">Author</p>
                 <p>Feature suggestion description - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut justo nisl. Sed aliquet tellus mi, sit amet aliquet diam suscipit tincidunt. Proin mollis feugiat libero ut dapibus. Aliquam erat volutpat. Maecenas a arcu vitae ipsum tristique condimentum quis id purus. Praesent lobortis odio in sem feugiat tempus sit amet id tortor. Praesent at dignissim justo, quis aliquet nulla. Etiam lobortis augue vitae sem gravida, vestibulum euismod eros suscipit. Vestibulum pretium odio quis erat convallis, in ullamcorper sapien mattis. Nunc efficitur ipsum nulla.</p>
 
                 <p>Integer est risus, iaculis id feugiat non, efficitur sit amet ipsum. Vestibulum sodales magna ipsum, nec sollicitudin elit mattis vel. Pellentesque hendrerit nec sem nec porta. Fusce pellentesque dui ex, ut faucibus orci sagittis congue. Nulla facilisi. Curabitur nisi nulla, pharetra non elit sit amet, molestie aliquam sem. Donec fermentum elementum enim. Suspendisse a molestie lorem, eu fermentum sapien. Pellentesque tincidunt est sapien, eget tristique felis condimentum et. Maecenas sit amet luctus ipsum. Vestibulum et tortor quis odio ultrices ornare vel vel libero. Phasellus iaculis lacus turpis, ut feugiat metus porta at.</p>
             </div>
-            
-            <br />
 
-            {submittedPost && (
-                <div className="alert alert-primary px-3 py-2">
-                    <h3>{submittedPost.title}</h3>
-                    <p className="text-secondary">{localStorage.getItem("user")}</p>
-                    <p>{submittedPost.description}</p>
+            {posts.map((post, index) => (
+                <div key={index} className="alert alert-primary px-3 py-2 mb-4">
+                    <h3>{post.title}</h3>
+                    <p className="text-secondary">{post.author}</p>
+                    <p>{post.description}</p>
                 </div>
-            )}
+            ))
+            }
 
             <br />
 
@@ -84,6 +96,10 @@ export function Features({user, game}) {
                     <p className='text-secondary'>{game ? game : ""} - {user}</p>
                 </div>
             </form>
+
+            <div className="d-flex justify-content-center align-items-center mt-4">
+                <button className="btn btn-danger text-light mt-3" onClick={handleErasePosts}>Erase All Your Feature Suggestions</button>
+            </div>
         </main>
     );
 }
