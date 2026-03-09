@@ -61,3 +61,12 @@ const verifyAuth = async (req, res, next) => {
 apiRouter.get('/posts', verifyAuth, (_req, res) => {
     res.send(posts);
 });
+
+apiRouter.post('/post', verifyAuth, (req, res) => {
+    posts = updatePosts(req.body);
+    res.send(posts);
+});
+
+app.use(function (err, req, res, next) {
+    res.status(500).send({ type: err.name, msg: err.message });
+})
