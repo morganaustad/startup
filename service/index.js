@@ -18,6 +18,7 @@ app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use('/api', apiRouter);
 
+// CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
     if (await findUser('email', req.body.email)) {
         res.status(409).send({ msg: 'Existing user' });
@@ -28,6 +29,7 @@ apiRouter.post('/auth/create', async (req, res) => {
     }
 });
 
+// GetAuth login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
     const user = await findUser('email', req.body.email);
     if (user) {
@@ -40,6 +42,7 @@ apiRouter.post('/auth/login', async (req, res) => {
     res.status(401).send({ msg: 'Unauthorized' });
 });
 
+// DeleteAuth logout a user
 apiRouter.delete('/auth/logout', async (req, res) => {
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
@@ -49,6 +52,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     res.status(204).end();
 });
 
+// Middleware to verify auth token
 const verifyAuth = async (req, res, next) => {
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
@@ -58,15 +62,29 @@ const verifyAuth = async (req, res, next) => {
     }
 };
 
+// GetPosts
 apiRouter.get('/posts', verifyAuth, (_req, res) => {
     res.send(posts);
 });
 
+// PostPost
 apiRouter.post('/post', verifyAuth, (req, res) => {
     posts = updatePosts(req.body);
     res.send(posts);
 });
 
+// Default error handler
 app.use(function (err, req, res, next) {
     res.status(500).send({ type: err.name, msg: err.message });
 })
+
+// Return default page if path is unknown
+app.use((_req, res) => {
+    res.sendFile('index.html', { root: 'public' });
+});
+
+// updatePosts adds a new post to the list of posts and returns the updated list
+function updatePosts(post) {
+    posts.push(post);
+    return posts;
+}
