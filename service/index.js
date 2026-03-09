@@ -3,6 +3,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const app = express();
+const fetch = require('node-fetch');
 
 const authCookieName = 'token';
 
@@ -65,6 +66,27 @@ const verifyAuth = async (req, res, next) => {
 // GetPosts
 apiRouter.get('/posts', verifyAuth, (_req, res) => {
     res.send(posts);
+});
+
+// GetGame
+apiRouter.get('/game/:id', verifyAuth, async (req, res) => {
+    const gameId = req.params.id;
+    const url = `https://free-to-play-games-database.p.rapidapi.com/api/game?id=${gameId}`;
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-host': 'free-to-play-games-database.p.rapidapi.com',
+        }
+    };
+
+    try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+        res.json(data);
+    } catch (error) {
+        res.status(500).send({ msg: 'Error fetching game data' });
+    }
 });
 
 // PostPost
