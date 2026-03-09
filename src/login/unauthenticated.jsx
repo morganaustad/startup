@@ -19,10 +19,10 @@ export function Unauthenticated(props) {
   async function loginOrCreate(endpoint) {
     const response = await fetch(endpoint, {
       method: 'post',
-      body: JSON.stringify({ email: userName, password: password }),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
+      body: JSON.stringify({ email: userName, password: password }),
     });
     if (response?.status === 200) {
       localStorage.setItem('user', userName);
@@ -44,9 +44,9 @@ export function Unauthenticated(props) {
             </div>
             <div className='mb-4'>
                 <label className='form-label'>Password:</label>
-                <input className='form-control' type='password' onChange={(e) => setPassword(e.target.value)} placeholder='password' />
+                <input className='form-control' type='password' onChange={(e) => setPassword(e.target.value)} placeholder='Password' />
             </div>
-            <Button variant='primary' onClick={() => loginUser()} disabled={!userName || !password}>
+            <Button variant='primary' className='me-3' onClick={() => loginUser()} disabled={!userName || !password}>
             Login
             </Button>
             <Button variant='secondary' onClick={() => createUser()} disabled={!userName || !password}>

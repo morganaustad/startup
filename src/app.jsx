@@ -8,7 +8,7 @@ import { Features } from './features/features';
 import { Store } from './store/store';
 import { AuthState } from './login/authState';
 
-export default function App() {
+function App() {
   const [user, setUser] = React.useState(localStorage.getItem('user') || null);
   const [game, setGame] = React.useState(localStorage.getItem('game') || null);
   const currentAuthState = user ? AuthState.Authenticated : AuthState.Unauthenticated;
@@ -26,7 +26,7 @@ export default function App() {
             </NavLink>
 
             <menu className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li className="nav-item"><NavLink to="/"  className="nav-link px-2 link-secondary">Home</NavLink></li>
+                <li className="nav-item"><NavLink to="/"  className="nav-link px-2 link-secondary">Login</NavLink></li>
                 {authState === AuthState.Authenticated &&<li className="nav-item"><NavLink to="features"  className="nav-link px-2 link-dark">Suggest Features</NavLink></li>}
                 {authState === AuthState.Authenticated && <li className="nav-item"><NavLink to="store"  className="nav-link px-2 link-dark">Game Store Page</NavLink></li>}
                 {/*
@@ -77,4 +77,4 @@ function NotFound() {
   );
 }
 
-// export default App;
+export default App;
