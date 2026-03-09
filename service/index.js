@@ -88,3 +88,33 @@ function updatePosts(post) {
     posts.push(post);
     return posts;
 }
+
+function createUser(email, password) {
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    const user = {
+        email: email,
+        password: passwordHash,
+        token: uuid.v4()
+    };
+    users.push(user);
+    return user;
+}
+
+function findUser(key, value) {
+    if (!value) { return null; }
+    return users.find(user => user[key] === value);
+}
+
+function setAuthCookie(res, token) {
+    res.cookie(authCookieName, token, {
+        maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
+        httpOnly: true,
+        sameSite: 'strict',
+        secure: true,
+    });
+}
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
