@@ -21,13 +21,14 @@ export function Authenticated(props) {
 
   return (
     <div>
-      <div className='color-primary'>{props.user}</div>
-      <Button variant='primary' onClick={() => navigate('/features')}>
+        <h2 className="text-center">Welcome to <span>FeatureReacher</span></h2>
+        <div className='color-primary'>{props.user}</div>
+        <Button variant='primary' onClick={() => navigate('/features')}>
         Suggest Features
-      </Button>
-      <Button variant='secondary' onClick={() => logout()}>
+        </Button>
+        <Button variant='secondary' onClick={() => logout()}>
         Logout
-      </Button>
+        </Button>
     </div>
   );
 }
