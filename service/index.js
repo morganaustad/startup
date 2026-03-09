@@ -1,6 +1,6 @@
 const cookieParser = require('cookie-parser');
 const express = require('express');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const app = express();
 
@@ -89,7 +89,7 @@ function updatePosts(post) {
     return posts;
 }
 
-function createUser(email, password) {
+async function createUser(email, password) {
     const passwordHash = await bcrypt.hash(password, 10);
 
     const user = {

@@ -6,10 +6,13 @@ import { BrowserRouter, NavLink, Routes, Route, useNavigate } from 'react-router
 import { Login } from './login/login';
 import { Features } from './features/features';
 import { Store } from './store/store';
+import { AuthState } from './login/authState';
 
 export default function App() {
   const [user, setUser] = React.useState(localStorage.getItem('user') || null);
   const [game, setGame] = React.useState(localStorage.getItem('game') || null);
+  const currentAuthState = user ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
 
   return (
     <BrowserRouter>
@@ -24,9 +27,11 @@ export default function App() {
 
             <menu className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li className="nav-item"><NavLink to="/"  className="nav-link px-2 link-secondary">Home</NavLink></li>
-                {user &&<li className="nav-item"><NavLink to="features"  className="nav-link px-2 link-dark">Suggest Features</NavLink></li>}
-                {user && <li className="nav-item"><NavLink to="store"  className="nav-link px-2 link-dark">Game Store Page</NavLink></li>}
-                {user && <li className="nav-item"><NavLink to="/"  className="nav-link px-2 py-2 link-light bg-info rounded" onClick={() => {localStorage.removeItem('user'); setUser(null); localStorage.removeItem('password');}}>Logout {user}</NavLink></li>}
+                {authState === AuthState.Authenticated &&<li className="nav-item"><NavLink to="features"  className="nav-link px-2 link-dark">Suggest Features</NavLink></li>}
+                {authState === AuthState.Authenticated && <li className="nav-item"><NavLink to="store"  className="nav-link px-2 link-dark">Game Store Page</NavLink></li>}
+                {/*
+                {authState === AuthState.Authenticated && <li className="nav-item"><NavLink to="/"  className="nav-link px-2 py-2 link-light bg-info rounded" onClick={() => {localStorage.removeItem('user'); setUser(null); localStorage.removeItem('password');}}>Logout {user}</NavLink></li>}
+                */}
             </menu>
         </header>
 
@@ -34,7 +39,17 @@ export default function App() {
         <div className="container">
 
         <Routes>
-            <Route path="/" element={<Login setUser={setUser} />} />
+            <Route path="/" element={<Login
+              userName={user}
+              authState={authState}
+              onAuthChange={(userName, authState) => {
+                setUser(userName);
+                setAuthState(authState);
+              }}
+              /> 
+              }
+              exact
+             />
             <Route path="/features" element={<Features user={user} game={game} />} />
             <Route path="/store" element={<Store />} />
             <Route path="*" element={<NotFound />} />
@@ -61,3 +76,5 @@ function NotFound() {
     </main>
   );
 }
+
+// export default App;
