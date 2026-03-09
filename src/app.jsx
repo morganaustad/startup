@@ -28,7 +28,7 @@ function App() {
             <menu className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li className="nav-item"><NavLink to="/"  className="nav-link px-2 link-secondary">Login</NavLink></li>
                 {authState === AuthState.Authenticated &&<li className="nav-item"><NavLink to="features"  className="nav-link px-2 link-dark">Suggest Features</NavLink></li>}
-                {authState === AuthState.Authenticated && <li className="nav-item"><NavLink to="store"  className="nav-link px-2 link-dark">Game Store Page</NavLink></li>}
+                {authState === AuthState.Authenticated && <li className="nav-item"><NavLink to="store"  className="nav-link px-2 link-dark">About Game</NavLink></li>}
                 {/*
                 {authState === AuthState.Authenticated && <li className="nav-item"><NavLink to="/"  className="nav-link px-2 py-2 link-light bg-info rounded" onClick={() => {localStorage.removeItem('user'); setUser(null); localStorage.removeItem('password');}}>Logout {user}</NavLink></li>}
                 */}

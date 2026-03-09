@@ -17,6 +17,7 @@ function GameCard() {
         }
         const data = await res.json();
         setGame(data);
+        localStorage.setItem('game', JSON.stringify(data.title));
       } catch (err) {
         console.error(err);
         setError(err.message);
