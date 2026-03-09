@@ -1,25 +1,13 @@
 import React from 'react';
-import { BrowserRouter, NavLink, Routes, Route, useNavigate } from 'react-router-dom';
+import GameCard from './gameCard';
 
 export function Store() {
-    const [game, setGame] = React.useState('');
-
-    // Edit function as needed when API is linked
-    function gameChange(e) {
-        setGame(e.target.value);
-    }
-
-    async function getGame(id) {
-        const res = await fetch(`/api/game/${id}`);
-        const data = await res.json();
-
-        return (data);
-    }
 
     return (
-        <main className="border px-3 py-3">
-            <h1>{game ? game : "Game Missing"}</h1>
-            {getGame(452)}
+        <main className="d-flex flex-column align-items-center justify-content-center border px-3 py-3">
+            <h2 className="text-center m-3">Game for Recommending Suggestions:</h2>
+            <GameCard />
+            <p className="text-center text-muted mt-5">*Game data is randomly pulled and may not be accurate. Refresh if nothing loads.</p>
         </main>
     );
 }

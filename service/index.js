@@ -69,24 +69,24 @@ apiRouter.get('/posts', verifyAuth, (_req, res) => {
 });
 
 // GetGame
-apiRouter.get('/game/:id', verifyAuth, async (req, res) => {
-    const gameId = req.params.id;
-    const url = `https://free-to-play-games-database.p.rapidapi.com/api/game?id=${gameId}`;
+apiRouter.get('/game/:id', async (req, res) => {
+  const gameId = req.params.id;
+  const url = `https://www.freetogame.com/api/game?id=${gameId}`;
 
-    const options = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-host': 'free-to-play-games-database.p.rapidapi.com',
-        }
-    };
+  try {
+    const response = await fetch(url);
 
-    try {
-        const response = await fetch(url, options);
-        const data = await response.json();
-        res.json(data);
-    } catch (error) {
-        res.status(500).send({ msg: 'Error fetching game data' });
+    if (!response.ok) {
+      console.error('Non-200 response:', response.status);
+      return res.status(500).send({ msg: 'Error fetching game data' });
     }
+
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    console.error('Fetch failed:', err);
+    res.status(500).send({ msg: 'Error fetching game data' });
+  }
 });
 
 // PostPost
