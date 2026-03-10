@@ -25,7 +25,7 @@ export function Authenticated(props) {
 
         <div className='d-flex flex-column border p-5'>
             <p className='text-center text-muted'>Signed in as:</p>
-            <div className='color-primary fs-3 mb-4'>{props.userName}</div>
+            <div className='color-primary fs-3 mb-4 text-center'>{props.userName}</div>
             <Button variant='primary' className='m-2' onClick={() => navigate('/features')}>
             Suggest Features
             </Button>

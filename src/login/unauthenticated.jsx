@@ -39,8 +39,8 @@ export function Unauthenticated(props) {
         <h2 className="text-center">Welcome to <span>FeatureReacher</span></h2>
         <div className='px-4 py-3 border'>
             <div className='mb-3'>
-                <label className='form-label'>Email:</label>
-                <input className='form-control' type='text' value={userName} onChange={(e) => setUserName(e.target.value)} placeholder='your@email.com' />
+                <label className='form-label'>Username:</label>
+                <input className='form-control' type='text' value={userName} onChange={(e) => setUserName(e.target.value)} placeholder='Username' />
             </div>
             <div className='mb-4'>
                 <label className='form-label'>Password:</label>
