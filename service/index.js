@@ -70,6 +70,8 @@ apiRouter.get('/posts', verifyAuth, (_req, res) => {
 
 // GetGame
 apiRouter.get('/game/:id', async (req, res) => {
+    // const game = {'title': 'Example Game', 'genre': 'Action', 'platform': 'PC', 'short_description': 'This is an example game description.', 'game_url': 'https://www.freetogame.com/highguard', 'thumbnail': 'https://www.freetogame.com/g/637/thumbnail.jpg'};
+    // res.json(game);
   const gameId = req.params.id;
   const url = `https://www.freetogame.com/api/game?id=${gameId}`;
 

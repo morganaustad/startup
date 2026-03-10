@@ -15,7 +15,9 @@ function GameCard() {
         if (!res.ok) {
           throw new Error('Failed to fetch game');
         }
+        // console.log('Response:', await res.json());
         const data = await res.json();
+        console.log('Fetched game data:', data);
         setGame(data);
         localStorage.setItem('game', JSON.stringify(data.title));
       } catch (err) {

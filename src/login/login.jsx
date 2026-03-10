@@ -6,7 +6,7 @@ import { AuthState } from './authState';
 
 export function Login({ userName, authState, onAuthChange }) {
   return (
-    <main>
+    <div>
       <div>
         {authState === AuthState.Authenticated && (
           <Authenticated userName={userName} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} />
@@ -20,6 +20,6 @@ export function Login({ userName, authState, onAuthChange }) {
           />
         )}
       </div>
-    </main>
+    </div>
   );
 }
