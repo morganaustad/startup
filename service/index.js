@@ -4,11 +4,9 @@ const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const app = express();
 const fetch = require('node-fetch');
+const DB = require('./database.js');
 
 const authCookieName = 'token';
-
-let users = [];
-let posts = [];
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -47,7 +45,7 @@ apiRouter.post('/auth/login', async (req, res) => {
 apiRouter.delete('/auth/logout', async (req, res) => {
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
-        delete user.token;
+        DB.updateUserRemoveAuth(user);
     }
     res.clearCookie(authCookieName);
     res.status(204).end();
@@ -64,7 +62,8 @@ const verifyAuth = async (req, res, next) => {
 };
 
 // GetPosts
-apiRouter.get('/posts', verifyAuth, (_req, res) => {
+apiRouter.get('/posts', verifyAuth, async (_req, res) => {
+    const posts = await DB.getPosts();
     res.send(posts);
 });
 
@@ -92,8 +91,8 @@ apiRouter.get('/game/:id', async (req, res) => {
 });
 
 // PostPost
-apiRouter.post('/post', verifyAuth, (req, res) => {
-    posts = updatePosts(req.body);
+apiRouter.post('/post', verifyAuth, async (req, res) => {
+    posts = await updatePosts(req.body);
     res.send(posts);
 });
 
@@ -108,9 +107,9 @@ app.use((_req, res) => {
 });
 
 // updatePosts adds a new post to the list of posts and returns the updated list
-function updatePosts(post) {
-    posts.push(post);
-    return posts;
+async function updatePosts(post) {
+    await DB.addPost(post);
+    return await DB.getPosts();
 }
 
 async function createUser(email, password) {
@@ -121,13 +120,16 @@ async function createUser(email, password) {
         password: passwordHash,
         token: uuid.v4()
     };
-    users.push(user);
+    await DB.addUser(user);
     return user;
 }
 
 function findUser(key, value) {
     if (!value) { return null; }
-    return users.find(user => user[key] === value);
+    if (key === 'token') {
+        return DB.getUserByToken(value);
+    }
+    return DB.getUser(value);
 }
 
 function setAuthCookie(res, token) {
@@ -139,6 +141,6 @@ function setAuthCookie(res, token) {
     });
 }
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
