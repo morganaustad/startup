@@ -9,7 +9,7 @@ export function Login({ userName, authState, onAuthChange }) {
     <div>
       <div>
         {authState === AuthState.Authenticated && (
-          <Authenticated userName={null} onLogout={() => onAuthChange(null, AuthState.Unauthenticated)} />
+          <Authenticated userName={userName} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} />
         )}
         {authState === AuthState.Unauthenticated && (
           <Unauthenticated
