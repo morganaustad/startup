@@ -38,6 +38,7 @@ async function updateUserRemoveAuth(user) {
 }
 
 async function addPost(post) {
+  post.created = new Date();
   return postCollection.insertOne(post);
 }
 
@@ -49,6 +50,10 @@ function getPosts() {
   return cursor.toArray();
 }
 
+function deletePostsByAuthor(authorEmail) {
+  return postCollection.deleteMany({ author: authorEmail });
+}
+
 module.exports = {
   getUser,
   getUserByToken,
@@ -56,5 +61,6 @@ module.exports = {
   updateUser,
   updateUserRemoveAuth,
   addPost,
-  getPosts
+  getPosts,
+  deletePostsByAuthor
 };

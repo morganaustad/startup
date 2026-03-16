@@ -48,7 +48,7 @@ export function Features({user, game}) {
             author: submissionAuthor
         };
 
-        const response = fetch('/api/post', {
+        await fetch('/api/post', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -56,9 +56,10 @@ export function Features({user, game}) {
             body: JSON.stringify(newPost)
         });
 
+        const response = await fetch('/api/posts');
         const savedPost = await response.json();
 
-        setPosts(prevPosts => [...prevPosts, savedPost]);
+        setPosts(savedPost);
 
         setTitle('');
         setDescription('');
@@ -74,18 +75,30 @@ export function Features({user, game}) {
             await fetch('/api/posts', {
                 method: 'DELETE'
             });
-
             setPosts([]);
         }
     }
 
-    React.useEffect(() => {
-        const interval = setInterval(() => {
-            handleSubmit('Please just post', LOREM, 'Spammer');
-        }, 10000);
+    // Temporary autoload of posts
+    async function loadPosts() {
+        const response = await fetch('/api/posts');
+        const data = await response.json();
+        setPosts(data);
+    }
 
+    React.useEffect(() => {
+        loadPosts();
+        const interval = setInterval(loadPosts, 5000);
         return () => clearInterval(interval);
-    } , [] );
+    }, [] );
+
+    // React.useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         handleSubmit('Please just post', LOREM, 'Spammer');
+    //     }, 10000);
+
+    //     return () => clearInterval(interval);
+    // } , [] );
 
     return (
         <main>

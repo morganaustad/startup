@@ -67,6 +67,22 @@ apiRouter.get('/posts', verifyAuth, async (_req, res) => {
     res.send(posts);
 });
 
+// DeletePosts by user
+apiRouter.delete('/posts', verifyAuth, async (req, res) => {
+    const user = await findUser('token', req.cookies[authCookieName]);
+    if (!user) {
+        res.status(401).send({ msg: 'Unauthorized' });
+    }
+
+    try {
+        await DB.deletePostsByAuthor(user.email);
+        res.status(204).end();
+    } catch (err) {
+        console.error('Error deleting posts:', err);
+        res.status(500).send({ msg: 'Error deleting posts' });
+    }
+});
+
 // GetGame
 apiRouter.get('/game/:id', async (req, res) => {
     // const game = {'title': 'Example Game', 'genre': 'Action', 'platform': 'PC', 'short_description': 'This is an example game description.', 'game_url': 'https://www.freetogame.com/highguard', 'thumbnail': 'https://www.freetogame.com/g/637/thumbnail.jpg'};
