@@ -109,14 +109,14 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Frontend calls service endpoints** - Used in login and posts and game about.
 - [x] **Supports registration, login, logout, and restricted endpoint** - It does, and this was also just dandy to do.
 
-<!--
 ## 🚀 DB deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [x] **Stores data in MongoDB** - It stores data in MongoDB.
+- [x] **Stores credentials in MongoDB** - It stores credentials in MongoDB and creates and erases temporary tokens.
 
+<!--
 ## 🚀 WebSocket deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
