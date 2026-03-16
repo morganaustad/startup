@@ -9,10 +9,34 @@ import { Store } from './store/store';
 import { AuthState } from './login/authState';
 
 function App() {
-  const [user, setUser] = React.useState(localStorage.getItem('user') || null);
+  const [user, setUser] = React.useState(null);
   const [game, setGame] = React.useState(localStorage.getItem('game') || null);
-  const currentAuthState = user ? AuthState.Authenticated : AuthState.Unauthenticated;
-  const [authState, setAuthState] = React.useState(currentAuthState);
+  const [authState, setAuthState] = React.useState(AuthState.Unknown);
+
+  React.useEffect(() => {
+    async function checkAuth() {
+      try {
+        const response = await fetch('/api/auth/me', {
+          credentials: 'include'
+        });
+
+        if (response?.status === 200) {
+          const body = await response.json();
+          setUser(body.email);
+          setAuthState(AuthState.Authenticated);
+        } else {
+          setAuthState(AuthState.Unauthenticated);
+        }
+      } catch (err) {
+        setAuthState(AuthState.Unauthenticated);
+      }
+    }
+    checkAuth();
+  }, []);
+
+  if (authState === AuthState.Unknown) {
+    return (<div className='text-center p-5'>Loading...</div>);
+  }
 
   return (
     <BrowserRouter>
@@ -42,9 +66,9 @@ function App() {
             <Route path="/" element={<Login
               userName={user}
               authState={authState}
-              onAuthChange={(userName, authState) => {
+              onAuthChange={(userName, newAuthState) => {
                 setUser(userName);
-                setAuthState(authState);
+                setAuthState(newAuthState);
               }}
               /> 
               }

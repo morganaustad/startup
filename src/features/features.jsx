@@ -50,13 +50,16 @@ export function Features({user, game}) {
 
         await fetch('/api/post', {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(newPost)
         });
 
-        const response = await fetch('/api/posts');
+        const response = await fetch('/api/posts', {
+            credentials: 'include'
+        });
         const savedPost = await response.json();
 
         setPosts(savedPost);
@@ -73,14 +76,14 @@ export function Features({user, game}) {
 
         if (confirmed) {
             await fetch('/api/posts', {
-                method: 'DELETE'
+                method: 'DELETE',
+                credentials: 'include'
             });
             setPosts([]);
         }
     }
 
     // Temporary autoload of posts
-    React.useEffect(() => {
     async function loadPosts() {
         try {
             const response = await fetch('/api/posts');
@@ -96,8 +99,6 @@ export function Features({user, game}) {
             setPosts([]);
         }
     }
-    loadPosts();
-}, []);
 
     React.useEffect(() => {
         loadPosts();

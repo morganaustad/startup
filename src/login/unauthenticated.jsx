@@ -22,10 +22,10 @@ export function Unauthenticated(props) {
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
+      credentials: 'include',
       body: JSON.stringify({ email: userName, password: password }),
     });
     if (response?.status === 200) {
-      localStorage.setItem('user', userName);
       props.onLogin(userName);
     } else {
       const body = await response.json();
