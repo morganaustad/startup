@@ -80,11 +80,24 @@ export function Features({user, game}) {
     }
 
     // Temporary autoload of posts
+    React.useEffect(() => {
     async function loadPosts() {
-        const response = await fetch('/api/posts');
-        const data = await response.json();
-        setPosts(data);
+        try {
+            const response = await fetch('/api/posts');
+            if (!response.ok) {
+                console.error('Failed to fetch posts:', response.status);
+                setPosts([]);
+                return;
+            }
+            const data = await response.json();
+            setPosts(Array.isArray(data) ? data : []);
+        } catch (err) {
+            console.error('Error fetching posts:', err);
+            setPosts([]);
+        }
     }
+    loadPosts();
+}, []);
 
     React.useEffect(() => {
         loadPosts();
