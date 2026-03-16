@@ -13,7 +13,9 @@ export function Features({user, game}) {
 
     React.useEffect(() => {
         async function loadPosts() {
-            const response = await fetch('/api/posts');
+            const response = await fetch('/api/posts', {
+                credentials: 'include'
+            });
             const data = await response.json();
             setPosts(data);
         }
@@ -86,7 +88,9 @@ export function Features({user, game}) {
     // Temporary autoload of posts
     async function loadPosts() {
         try {
-            const response = await fetch('/api/posts');
+            const response = await fetch('/api/posts', {
+                credentials: 'include'
+            });
             if (!response.ok) {
                 console.error('Failed to fetch posts:', response.status);
                 setPosts([]);
