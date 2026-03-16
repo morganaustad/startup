@@ -127,20 +127,6 @@ export function Features({user, game}) {
 
             <br />
 
-            <div className="alert alert-primary px-3 py-2 mb-4">
-                <h3>Feature Suggestion Title</h3>
-                <p className="text-secondary">Author</p>
-                <p>{LOREM}</p>
-            </div>
-
-            <div className="alert alert-primary px-3 py-2 mb-4">
-                <h3>Feature Suggestion Title 2</h3>
-                <p className="text-secondary">Author</p>
-                <p>{LOREM}</p>
-
-                <p>{LOREM}</p>
-            </div>
-
             {posts.map((post, index) => (
                 <div key={index} className="alert alert-primary px-3 py-2 mb-4">
                     <h3>{post.title ?? 'No Title'}</h3>
