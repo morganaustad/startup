@@ -1,5 +1,6 @@
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
+const uuid = require('uuid');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
@@ -54,6 +55,12 @@ function deletePostsByAuthor(authorEmail) {
   return postCollection.deleteMany({ author: authorEmail });
 }
 
+async function createNewUserToken(email) {
+  const newToken = uuid.v4();
+  await userCollection.updateOne({ email: email }, { $set: { token: newToken } });
+  return newToken;
+}
+
 module.exports = {
   getUser,
   getUserByToken,
@@ -62,5 +69,6 @@ module.exports = {
   updateUserRemoveAuth,
   addPost,
   getPosts,
-  deletePostsByAuthor
+  deletePostsByAuthor,
+  createNewUserToken
 };

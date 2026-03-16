@@ -28,17 +28,16 @@ export function Features({user, game}) {
 
         const eventTitle = title.trim();
         const eventDescription = description.trim();
-        const eventAuthor = localStorage.getItem('user') || 'Anonymous';
 
         if (eventTitle === '' || eventDescription === '') {
             alert('Please fill in both title and description fields.');
             return;
         }
 
-        handleSubmit(eventTitle, eventDescription, eventAuthor);
+        handleSubmit(eventTitle, eventDescription);
     }
 
-    async function handleSubmit(submissionTitle, submissionDescription, submissionAuthor) {
+    async function handleSubmit(submissionTitle, submissionDescription) {
         if (submissionTitle === '' || submissionDescription === '') {
             alert('Please fill in both title and description fields.');
             return;
@@ -47,7 +46,6 @@ export function Features({user, game}) {
         const newPost = {
             title: submissionTitle,
             description: submissionDescription,
-            author: submissionAuthor
         };
 
         await fetch('/api/post', {

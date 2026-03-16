@@ -19,6 +19,7 @@ function App() {
         const response = await fetch('/api/auth/me', {
           credentials: 'include'
         });
+        console.log(response);
 
         if (response?.status === 200) {
           const body = await response.json();
@@ -67,6 +68,7 @@ function App() {
               userName={user}
               authState={authState}
               onAuthChange={(userName, newAuthState) => {
+                console.log('Auth state changed:', { userName, newAuthState });
                 setUser(userName);
                 setAuthState(newAuthState);
               }}

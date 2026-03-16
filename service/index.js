@@ -33,12 +33,13 @@ apiRouter.post('/auth/login', async (req, res) => {
     const user = await findUser('email', req.body.email);
     if (user) {
         if (await bcrypt.compare(req.body.password, user.password)) {
-            setAuthCookie(res, user.token);
+            const newToken = await DB.createNewUserToken(user.email);
+            setAuthCookie(res, newToken);
             res.send({ email: user.email });
-            return;
         }
-    }
+    } else {
     res.status(401).send({ msg: 'Unauthorized' });
+    }
 });
 
 //Verify user is logged in
@@ -119,7 +120,22 @@ apiRouter.get('/game/:id', async (req, res) => {
 
 // PostPost
 apiRouter.post('/post', verifyAuth, async (req, res) => {
-    posts = await updatePosts(req.body);
+    const user = await findUser('token', req.cookies[authCookieName]);
+
+    if (!user) {
+        return res.status(401).send({ msg: 'Unauthorized' });
+    }
+
+    const post = {
+        title: req.body.title,
+        description: req.body.description,
+        author: user.email,
+        created: new Date()
+    };
+
+    await DB.addPost(post);
+
+    const posts = await DB.getPosts();
     res.send(posts);
 });
 
