@@ -8,27 +8,24 @@ export function Features({user, game}) {
 
     const [title, setTitle] = React.useState('');
     const [description, setDescription] = React.useState('');
-    const [posts, setPosts] = React.useState(() => {
-        const savedPosts = localStorage.getItem('posts');
-        return savedPosts ? JSON.parse(savedPosts) : [{ title: 'Example Feature Suggestion', description: LOREM, author: 'Deez' }];
-    });
+    const [posts, setPosts] = React.useState([]);
 
 
     React.useEffect(() => {
-        localStorage.setItem('posts', JSON.stringify(posts));
-    }, [posts]);
-
-
-    React.useEffect(() => {
-        console.log('Posts updated:', posts);
+        async function loadPosts() {
+            const response = await fetch('/api/posts');
+            const data = await response.json();
+            setPosts(data);
+        }
+        loadPosts();
     }, []);
 
 
     function handleFormSubmit(e) {
         e.preventDefault();
 
-        const eventTitle = e.title.trim();
-        const eventDescription = e.description.trim();
+        const eventTitle = title.trim();
+        const eventDescription = description.trim();
         const eventAuthor = localStorage.getItem('user') || 'Anonymous';
 
         if (eventTitle === '' || eventDescription === '') {
@@ -39,34 +36,46 @@ export function Features({user, game}) {
         handleSubmit(eventTitle, eventDescription, eventAuthor);
     }
 
-    function handleSubmit(submissionTitle, submissionDescription, author) {
+    async function handleSubmit(submissionTitle, submissionDescription, submissionAuthor) {
         if (submissionTitle === '' || submissionDescription === '') {
             alert('Please fill in both title and description fields.');
             return;
         }
 
-        setPosts(prevPosts => [
-            ...prevPosts,
-            {
+        const newPost = {
             title: submissionTitle,
             description: submissionDescription,
-            author: author
-            }
-        ]);
+            author: submissionAuthor
+        };
+
+        const response = fetch('/api/post', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newPost)
+        });
+
+        const savedPost = await response.json();
+
+        setPosts(prevPosts => [...prevPosts, savedPost]);
 
         setTitle('');
         setDescription('');
     }
 
 
-    function handleErasePosts(e) {
+    async function handleErasePosts(e) {
         e.preventDefault();
 
         const confirmed = window.confirm('Are you sure you want to erase all your feature suggestions? This action cannot be undone.');
 
         if (confirmed) {
+            await fetch('/api/posts', {
+                method: 'DELETE'
+            });
+
             setPosts([]);
-            localStorage.removeItem('posts');
         }
     }
 
