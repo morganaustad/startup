@@ -190,7 +190,7 @@ function setAuthCookie(res, token) {
     });
 }
 
-const httpService = app.listen(port, () => {
+const httpService = app.listen(port, '0.0.0.0',() => {
     console.log(`Server running on port ${port}`);
 });
 

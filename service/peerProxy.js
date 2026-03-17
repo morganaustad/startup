@@ -4,8 +4,7 @@ let socketServer;
 
 function peerProxy(httpService) {
     socketServer = new WebSocketServer({ 
-        server: httpService,
-        path: '/ws'
+        server: httpService
     });
 
     socketServer.on('connection', (socket) => {
