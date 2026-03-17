@@ -103,18 +103,21 @@ export function Features({user, game}) {
     }
 
     React.useEffect(() => {
-        loadPosts();
-        const interval = setInterval(loadPosts, 5000);
-        return () => clearInterval(interval);
+        const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+        const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+
+        socket.onmessage = async (event) => {
+            const data = JSON.parse(event.data);
+
+            if (data.type === 'newPost') {
+                loadPosts();
+            }
+        };
+
+        return () => {
+            socket.close();
+        }
     }, [] );
-
-    // React.useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         handleSubmit('Please just post', LOREM, 'Spammer');
-    //     }, 10000);
-
-    //     return () => clearInterval(interval);
-    // } , [] );
 
     return (
         <main>
