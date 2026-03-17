@@ -116,14 +116,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Stores data in MongoDB** - It stores data in MongoDB.
 - [x] **Stores credentials in MongoDB** - It stores credentials in MongoDB and creates and erases temporary tokens.
 
-<!--
 ## 🚀 WebSocket deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
--->
+- [x] **Backend listens for WebSocket connection** - Backend listens in index.js
+- [x] **Frontend makes WebSocket connection** - Frontend makes connections in features.jsx
+- [x] **Data sent over WebSocket connection** - Posts are sent out
+- [x] **WebSocket data displayed** - WebSocket data is updated automatically
+- [x] **Application is fully functional** - Application works as intended
