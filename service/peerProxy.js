@@ -1,7 +1,9 @@
 const { WebSocketServer } = require('ws');
 
+let socketServer;
+
 function peerProxy(httpService) {
-    const socketServer = new WebSocketServer({ server: httpService});
+    socketServer = new WebSocketServer({ server: httpService});
 
     socketServer.on('connection', (socket) => {
         socket.isAlive = true;
@@ -31,4 +33,14 @@ function peerProxy(httpService) {
     }, 10000);
 }
 
-module.exports = { peerProxy };
+function broadcastEvent(event) {
+    if (!socketServer) { return; }
+
+    socketServer.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send(JSON.stringify(event));
+        }
+    });
+}
+
+module.exports = { peerProxy, broadcastEvent };

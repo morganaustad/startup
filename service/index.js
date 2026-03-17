@@ -5,7 +5,7 @@ const uuid = require('uuid');
 const app = express();
 const fetch = require('node-fetch');
 const DB = require('./database.js');
-const { peerProxy } = require('./peerProxy.js');
+const { peerProxy, broadcastEvent } = require('./peerProxy.js');
 
 const authCookieName = 'token';
 
@@ -135,6 +135,11 @@ apiRouter.post('/post', verifyAuth, async (req, res) => {
     };
 
     await DB.addPost(post);
+
+    broadcastEvent({
+        type: 'newPost',
+        post: post
+    });
 
     const posts = await DB.getPosts();
     res.send(posts);

@@ -1,0 +1,5 @@
+class featureNotifier {
+    constructor() {
+        // fix
+    }
+}
