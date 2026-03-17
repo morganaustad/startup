@@ -3,7 +3,10 @@ const { WebSocketServer } = require('ws');
 let socketServer;
 
 function peerProxy(httpService) {
-    socketServer = new WebSocketServer({ server: httpService});
+    socketServer = new WebSocketServer({ 
+        server: httpService,
+        path: '/ws'
+    });
 
     socketServer.on('connection', (socket) => {
         socket.isAlive = true;
